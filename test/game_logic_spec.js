@@ -1,7 +1,8 @@
 import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
-import {getArrayPosition} from '../src/game';
+import {getArrayPosition, getLegalMoves} from '../src/game';
+import reducer from '../src/reducer';
 
 describe( 'game logic', () => {
 
@@ -27,5 +28,11 @@ describe( 'game logic', () => {
         const arrayPositions = getArrayPosition( rank, file );
 
         expect(arrayPositions).to.equal( Map({ x: 3, y: 5 } ) );
+    });
+
+    it( 'gets the legal moves for a pawn that hasn\'t moved yet', () => {
+        const state = reducer( null, {type: 'INIT_GAME'} );
+        const legalMoves = reducer( state, { type: 'GET_LEGAL_MOVES', rank: 2, file: 'd' } );
+        console.log(legalMoves);
     });
 });
