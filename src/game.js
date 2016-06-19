@@ -26,13 +26,15 @@ export function resetGame() {
 
 export function getLegalMoves( state, rank, file ) {
     const boardPosition = getArrayPosition(rank, file);
-    const piece = state.get('board').get(boardPosition.get('x')).get(boardPosition.get('y'));
-
-    switch(piece) {
+    const piece = getPiece( state.get('board'), boardPosition.get('x'), boardPosition.get('y') );
+    switch(Math.abs(piece)) {
         case 1:
-            getPawnLegalMoves()
+            return getPawnLegalMoves( state.get('board'), boardPosition );
     }
-    console.log(piece);
+}
+
+export function getPiece(board, rank, file) {
+   return board.get(rank).get(file);
 }
 
 export function getArrayPosition( rank, file ) {
