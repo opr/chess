@@ -39,5 +39,10 @@ describe( 'game logic', () => {
     it( 'gets the legal moves for a pawn that hasn\'t moved yet', () => {
         const state = reducer( null, {type: 'INIT_GAME'} );
         const legalMoves = reducer( state, { type: 'GET_LEGAL_MOVES', rank: 2, file: 'd' } );
+
+        expect(legalMoves).to.equal(fromJS([
+            {x:5, y:3},
+            {x:4, y:3}
+        ]));
     });
 });

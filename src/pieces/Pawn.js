@@ -7,14 +7,13 @@ export function getPawnLegalMoves( board, boardPosition ) {
     var validMoves = List();
 
     if( isWhite ) {
-        //if it's on the 2nd rank, check 2 squares in front of it.
+        //if it's on the 2nd rank, check 1 then 2 squares in front of it.
         if(board.get(x-1).get(y) == 0) {
-            console.log('pushng');
             validMoves = validMoves.push(Map({ x: x-1, y: y}));
             if(board.get(x-2).get(y) == 0) {
                 validMoves = validMoves.push(Map({ x: x-2, y: y}));
             }
         }
     }
-    console.log(validMoves);
+    return validMoves;
 }
